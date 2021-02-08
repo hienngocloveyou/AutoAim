@@ -34,6 +34,6 @@ namespace EssenceDrainContagion
         public RangeNode<int> DiesAfterTime { get; set; } = new RangeNode<int>(-50, -200, 200);
         public RangeNode<int> BreachMonsterWeight { get; set; } = new RangeNode<int>(50, -200, 200);
         public RangeNode<int> HarbingerMinionWeight { get; set; } = new RangeNode<int>(50, -200, 200);
-        public ToggleNode Enable { get; set; } = new ToggleNode(true);
+        public ToggleNode Enable { get; set; } = new ToggleNode(false);
     }
 }
