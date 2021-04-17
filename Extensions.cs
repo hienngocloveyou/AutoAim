@@ -11,8 +11,8 @@ namespace EssenceDrainContagion
     {
         public static bool HasBuff(this Entity entity, string buff, bool contains = false)
         {
-            return entity.HasComponent<Life>() &&
-                   entity.GetComponent<Life>().Buffs.Any(b => contains ? b.Name.Contains(buff) : b.Name == buff);
+            return entity.HasComponent<ExileCore.PoEMemory.Components.Buffs>() &&
+                   entity.GetComponent<ExileCore.PoEMemory.Components.Buffs>().BuffsList.Any(b => contains ? b.Name.Contains(buff) : b.Name == buff);
         }
 
         public static bool HaveStat(Entity entity, GameStat stat)
