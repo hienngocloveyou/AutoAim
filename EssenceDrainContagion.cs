@@ -121,8 +121,8 @@ namespace EssenceDrainContagion
                        entity.IsHostile &&
                        entity.HasComponent<Targetable>() &&
                        entity.GetComponent<Targetable>().isTargetable &&
-                       entity.HasComponent<ExileCore.PoEMemory.Components.Buffs>() &&
-                       entity.GetComponent<ExileCore.PoEMemory.Components.Buffs>().CurHP > 0 &&
+                       entity.HasComponent<Life>() &&
+                       entity.GetComponent<Life>().CurHP > 0 &&
                        entity.DistancePlayer < Settings.AimRangeGrid &&
                        GameController.Window.GetWindowRectangleTimeCache.Contains(
                            GameController.Game.IngameState.Camera.WorldToScreen(entity.Pos));
