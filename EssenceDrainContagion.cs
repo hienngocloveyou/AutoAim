@@ -197,10 +197,10 @@ namespace EssenceDrainContagion
                 weight -= (int) (p1.Distance(p2) / 10f);
             }
 
-            if (entity.GetComponent<Life>().HasBuff("contagion")) weight += Settings.HasContagionWeight;
-            if (entity.GetComponent<Life>().HasBuff("capture_monster_trapped")) weight += Settings.capture_monster_trapped;
-            if (entity.GetComponent<Life>().HasBuff("harbinger_minion_new")) weight += Settings.HarbingerMinionWeight;
-            if (entity.GetComponent<Life>().HasBuff("capture_monster_enraged")) weight += Settings.capture_monster_enraged;
+            if (entity.GetComponent<ExileCore.PoEMemory.Components.Buffs>().HasBuff("contagion")) weight += Settings.HasContagionWeight;
+            if (entity.GetComponent<ExileCore.PoEMemory.Components.Buffs>().HasBuff("capture_monster_trapped")) weight += Settings.capture_monster_trapped;
+            if (entity.GetComponent<ExileCore.PoEMemory.Components.Buffs>().HasBuff("harbinger_minion_new")) weight += Settings.HarbingerMinionWeight;
+            if (entity.GetComponent<ExileCore.PoEMemory.Components.Buffs>().HasBuff("capture_monster_enraged")) weight += Settings.capture_monster_enraged;
             if (entity.Path.Contains("/BeastHeart")) weight += Settings.BeastHearts;
             if (entity.Path == "Metadata/Monsters/Tukohama/TukohamaShieldTotem") weight += Settings.TukohamaShieldTotem;
 
