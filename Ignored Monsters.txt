@@ -1,7 +1,0 @@
-Metadata/Monsters/Avatar/Avatar
-
-# Nightwane Clone
-Metadata/Monsters/SkeletonSoldier/SkeletonSoldierRangedBossClone
-
-# Atziri Reflect Clone (reflects all your damage)
-Metadata/Monsters/Atziri/AtziriMirror
