@@ -23,8 +23,8 @@ namespace MadDog_AutoAim
         private Coroutine _mainCoroutine;
         private Tuple<float, Entity> _currentTarget;
         private Stopwatch _lastTargetSwap = new Stopwatch();
-        private Entity player;
-        private Camera camera;
+        //private Entity player;
+        //private Camera camera;
 
         private readonly string[] _ignoredBuffs = {
             "capture_monster_captured",
@@ -58,8 +58,8 @@ namespace MadDog_AutoAim
 
         public override bool Initialise()
         {
-            player = GameController.Player;
-            camera = GameController.Game.IngameState.Camera;
+            //player = GameController.Player;
+            //camera = GameController.Game.IngameState.Camera;
             LoadIgnoredMonsters($@"{DirectoryFullName}\Ignored Monsters.txt");
             Input.RegisterKey(Keys.LButton);
             //_mainCoroutine = new Coroutine(MainCoroutine(),this,"EDC");
@@ -153,7 +153,7 @@ namespace MadDog_AutoAim
                        entity.GetComponent<Life>().CurHP > 0 &&
                        GetDistanceFromPlayer(entity) < Settings.AimRange &&
                        GameController.Window.GetWindowRectangleTimeCache.Contains(
-                           camera.WorldToScreen(entity.Pos));
+                           GameController.Game.IngameState.Camera.WorldToScreen(entity.Pos));
             }
             catch
             {
@@ -164,7 +164,7 @@ namespace MadDog_AutoAim
         private int GetDistanceFromPlayer(Entity entity)
         {
             var p = entity.Pos;
-            var distance = Math.Sqrt(Math.Pow(player.Pos.X - p.X, 2) + Math.Pow(player.Pos.Y - p.Y, 2));
+            var distance = Math.Sqrt(Math.Pow(GameController.Player.Pos.X - p.X, 2) + Math.Pow(GameController.Player.Pos.Y - p.Y, 2));
             return (int)distance;
         }
 
@@ -182,7 +182,7 @@ namespace MadDog_AutoAim
             {
                 if (Settings.ShowAimRange.Value)
                 {
-                    DrawEllipseToWorld(player.Pos, Settings.AimRange.Value, 25, 2, Color.LawnGreen);
+                    DrawEllipseToWorld(GameController.Player.Pos, Settings.AimRange.Value, 25, 2, Color.LawnGreen);
                 }
 
                       
@@ -211,14 +211,14 @@ namespace MadDog_AutoAim
             {
                 if (i >= plottedCirclePoints.Count - 1)
                 {
-                    var pointEnd1 = camera.WorldToScreen(plottedCirclePoints.Last());
-                    var pointEnd2 = camera.WorldToScreen(plottedCirclePoints[0]);
+                    var pointEnd1 = GameController.Game.IngameState.Camera.WorldToScreen(plottedCirclePoints.Last());
+                    var pointEnd2 = GameController.Game.IngameState.Camera.WorldToScreen(plottedCirclePoints[0]);
                     Graphics.DrawLine(pointEnd1, pointEnd2, lineWidth, color);
                     return;
                 }
 
-                var point1 = camera.WorldToScreen(plottedCirclePoints[i]);
-                var point2 = camera.WorldToScreen(plottedCirclePoints[i + 1]);
+                var point1 = GameController.Game.IngameState.Camera.WorldToScreen(plottedCirclePoints[i]);
+                var point2 = GameController.Game.IngameState.Camera.WorldToScreen(plottedCirclePoints[i + 1]);
                 Graphics.DrawLine(point1, point2, lineWidth, color);
             }
         }
