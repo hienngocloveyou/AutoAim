@@ -11,10 +11,11 @@ using ExileCore.Shared;
 using ExileCore.Shared.Enums;
 using ExileCore.Shared.Helpers;
 using SharpDX;
+using System.Windows.Forms;
 
-namespace EssenceDrainContagion
+namespace MadDog_AutoAim
 {
-    public class EssenceDrainContagion : BaseSettingsPlugin<EssenceDrainContagionSettings>
+    public class AutoAim : BaseSettingsPlugin<AutoAimSetting>
     {
         private bool _aiming;
         private Vector2 _oldMousePos;
@@ -56,7 +57,7 @@ namespace EssenceDrainContagion
         public override bool Initialise()
         {
             LoadIgnoredMonsters($@"{DirectoryFullName}\Ignored Monsters.txt");
-            Input.RegisterKey(Settings.AimKey);
+            Input.RegisterKey(Keys.LButton);
             _mainCoroutine = new Coroutine(
                 MainCoroutine(),
                 this,
@@ -89,9 +90,9 @@ namespace EssenceDrainContagion
                     // ignored
                 }
 
-                if (!Input.IsKeyDown(Settings.AimKey)) 
+                if (Input.IsKeyDown(Keys.LButton)) 
                     _oldMousePos = Input.MousePosition;
-                if (Input.IsKeyDown(Settings.AimKey)
+                if (!Input.IsKeyDown(Keys.LButton)
                     && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
                     && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
                 {
@@ -99,7 +100,7 @@ namespace EssenceDrainContagion
                     yield return Attack();
                 }
 
-                if (!Input.IsKeyDown(Settings.AimKey) && _aiming)
+                if (!Input.IsKeyDown(Keys.LButton) && _aiming)
                 {
                     Input.SetCursorPos(_oldMousePos);
                     _aiming = false;
@@ -123,7 +124,7 @@ namespace EssenceDrainContagion
                        entity.GetComponent<Targetable>().isTargetable &&
                        entity.HasComponent<Life>() &&
                        entity.GetComponent<Life>().CurHP > 0 &&
-                       entity.DistancePlayer < Settings.AimRangeGrid &&
+                       entity.DistancePlayer < Settings.AimRange &&
                        GameController.Window.GetWindowRectangleTimeCache.Contains(
                            GameController.Game.IngameState.Camera.WorldToScreen(entity.Pos));
             }
@@ -162,7 +163,7 @@ namespace EssenceDrainContagion
             if (_currentTarget == null) yield break;
             var position = GameController.Game.IngameState.Camera.WorldToScreen(_currentTarget.Item2.Pos);
             Input.SetCursorPos(position);
-            yield return Input.KeyPress(_currentTarget.Item2.HasBuff("contagion", true) ? Settings.EssenceDrainKey.Value : Settings.ContagionKey.Value);
+            yield return Input.KeyPress(Settings.ActiveSKill.Value);
         }
 
         private IEnumerable<Tuple<float, Entity>> ScanValidMonsters()
@@ -184,18 +185,12 @@ namespace EssenceDrainContagion
         private float ComputeWeight(Entity entity)
         {
             var weight = 0;
-            if (Settings.ClosestToMouse)
-            {
-                var p1 = Input.MousePosition;
-                var p2 = GameController.Game.IngameState.Camera.WorldToScreen(entity.Pos);
-                weight -= (int) (p1.Distance(p2) / 10f);
-            }
-            else
-            {
-                var p1 = GameController.Game.IngameState.Camera.WorldToScreen(GameController.Player.Pos);
-                var p2 = GameController.Game.IngameState.Camera.WorldToScreen(entity.Pos);
-                weight -= (int) (p1.Distance(p2) / 10f);
-            }
+            
+            
+            var p1 = GameController.Game.IngameState.Camera.WorldToScreen(GameController.Player.Pos);
+            var p2 = GameController.Game.IngameState.Camera.WorldToScreen(entity.Pos);
+            weight -= (int) (p1.Distance(p2) / 10f);
+            
 
             if (entity.GetComponent<ExileCore.PoEMemory.Components.Buffs>().HasBuff("contagion")) weight += Settings.HasContagionWeight;
             if (entity.GetComponent<ExileCore.PoEMemory.Components.Buffs>().HasBuff("capture_monster_trapped")) weight += Settings.capture_monster_trapped;

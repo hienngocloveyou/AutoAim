@@ -2,18 +2,14 @@
 using ExileCore.Shared.Interfaces;
 using ExileCore.Shared.Nodes;
 
-namespace EssenceDrainContagion
+namespace MadDog_AutoAim
 {
-    public class EssenceDrainContagionSettings : ISettings
+    public class AutoAimSetting : ISettings
     {
-        public HotkeyNode AimKey { get; set; } = Keys.RButton;
-        public HotkeyNode ContagionKey { get; set; } = Keys.Q;
-        public HotkeyNode EssenceDrainKey { get; set; } = Keys.W;
-        public ToggleNode ClosestToMouse { get; set; } = new ToggleNode(true);
-        public RangeNode<int> AimRangeGrid { get; set; } = new RangeNode<int>(100, 40, 200);
+        //public HotkeyNode AimKey { get; set; } = Keys.RButton;
+        public HotkeyNode ActiveSKill { get; set; } = Keys.Q;
+        public RangeNode<int> AimRange { get; set; } = new RangeNode<int>(100, 40, 200);
         public RangeNode<int> AimLoopDelay { get; set; } = new RangeNode<int>(124, 1, 200);
-        public ToggleNode RMousePos { get; set; } = new ToggleNode(false);
-        public ToggleNode AimPlayers { get; set; } = new ToggleNode(true);
         public ToggleNode DebugMonsterWeight { get; set; } = new ToggleNode(false);
         public ToggleNode ShowAimRange { get; set; } = new ToggleNode(false);
         public RangeNode<int> HasContagionWeight { get; set; } = new RangeNode<int>(20, -200, 200);

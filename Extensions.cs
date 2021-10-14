@@ -5,7 +5,7 @@ using ExileCore.PoEMemory.MemoryObjects;
 using ExileCore.Shared.Enums;
 using SharpDX;
 
-namespace EssenceDrainContagion
+namespace MadDog_AutoAim
 {
     public static class Extensions
     {
