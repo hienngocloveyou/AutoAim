@@ -62,8 +62,8 @@ namespace MadDog_AutoAim
             //camera = GameController.Game.IngameState.Camera;
             LoadIgnoredMonsters($@"{DirectoryFullName}\Ignored Monsters.txt");
             Input.RegisterKey(Keys.LButton);
-            //_mainCoroutine = new Coroutine(MainCoroutine(),this,"EDC");
-            //Core.ParallelRunner.Run(_mainCoroutine);
+            _mainCoroutine = new Coroutine(MainCoroutine(),this,"EDC");
+            Core.ParallelRunner.Run(_mainCoroutine);
             return true;
         }
 
