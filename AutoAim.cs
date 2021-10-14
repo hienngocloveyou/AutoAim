@@ -118,7 +118,7 @@ namespace MadDog_AutoAim
                     if (Input.IsKeyDown(Keys.LButton) && _aiming)
                     {
                         //Input.SetCursorPos(_oldMousePos);
-                        Input.SetCursorPos(camera.WorldToScreen(player.Pos + new Vector3(0, -500, 0)));
+                        Input.SetCursorPos(camera.WorldToScreen(player.Pos));
                         _aiming = false;
                     }
 
