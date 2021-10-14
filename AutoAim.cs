@@ -96,8 +96,9 @@ namespace MadDog_AutoAim
 
                 if(player.IsAlive)
                 {
-                    if (Input.IsKeyDown(Keys.LButton))
-                        _oldMousePos = Input.MousePosition;
+                    //if (Input.IsKeyDown(Keys.LButton))
+                        //_oldMousePos = Input.MousePosition;
+
                     if (!Input.IsKeyDown(Keys.LButton)
                         && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
                         && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
@@ -108,7 +109,8 @@ namespace MadDog_AutoAim
 
                     if (Input.IsKeyDown(Keys.LButton) && _aiming)
                     {
-                        Input.SetCursorPos(_oldMousePos);
+                        //Input.SetCursorPos(_oldMousePos);
+                        Input.SetCursorPos(camera.WorldToScreen(player.Pos + new Vector3(0, -500, 0)));
                         _aiming = false;
                     }
 
