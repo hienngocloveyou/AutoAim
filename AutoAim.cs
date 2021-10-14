@@ -76,7 +76,7 @@ namespace MadDog_AutoAim
             {
                 try
                 {
-                    /*
+                    
                     if (_currentTarget == null ||
                         !ValidTarget(_currentTarget?.Item2))
                     {
@@ -89,13 +89,14 @@ namespace MadDog_AutoAim
                         if (best?.Item1 > 1.2f * _currentTarget?.Item1) _currentTarget = best;
                         _lastTargetSwap.Restart();
                     }
-                    */
+                    /*
                     if (_currentTarget == null ||
                         !ValidTarget(_currentTarget?.Item2))
                     {
                         _currentTarget = ScanValidMonsters()?.FirstOrDefault();
                         //_lastTargetSwap.Restart();
                     }
+                    */
 
                 }
                 catch
@@ -128,10 +129,10 @@ namespace MadDog_AutoAim
 
 
                 }
-                //else
-                //{
-                    //_aiming = false;
-                //}
+                else
+                {
+                    _aiming = false;
+                }
                 
             }
             // ReSharper disable once IteratorNeverReturns
@@ -247,7 +248,7 @@ namespace MadDog_AutoAim
         {
             if (_currentTarget == null)
             {
-                //_aiming = false;
+                _aiming = false;
                 yield break;
             }
             else
