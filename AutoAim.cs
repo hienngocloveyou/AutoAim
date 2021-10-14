@@ -17,7 +17,7 @@ namespace MadDog_AutoAim
 {
     public class AutoAim : BaseSettingsPlugin<AutoAimSetting>
     {
-        private bool _aiming;
+        private bool _aiming = false;
         private Vector2 _oldMousePos;
         private HashSet<string> _ignoredMonsters;
         private Coroutine _mainCoroutine;
