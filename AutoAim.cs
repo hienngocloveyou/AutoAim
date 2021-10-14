@@ -105,29 +105,28 @@ namespace MadDog_AutoAim
 
                 if(player.IsAlive)
                 {
-                    if(ValidTarget(_currentTarget?.Item2))
+                    //if (Input.IsKeyDown(Keys.LButton))
+                    //_oldMousePos = Input.MousePosition;
+
+                    if (!Input.IsKeyDown(Keys.LButton)
+                        && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
+                        && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
                     {
-                        //if (Input.IsKeyDown(Keys.LButton))
-                        //_oldMousePos = Input.MousePosition;
-
-                        if (!Input.IsKeyDown(Keys.LButton)
-                            && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
-                            && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
-                        {
-                            _aiming = true;
-                            yield return Attack();
-                        }
-
-                        if (Input.IsKeyDown(Keys.LButton) && _aiming)
-                        {
-                            //Input.SetCursorPos(_oldMousePos);
-                            Input.SetCursorPos(camera.WorldToScreen(player.Pos));
-                            _aiming = false;
-                        }
-
-                        yield return new WaitTime(10);
+                        _aiming = true;
+                        yield return Attack();
                     }
-                    
+
+                    if (Input.IsKeyDown(Keys.LButton) && _aiming)
+                    {
+                        //Input.SetCursorPos(_oldMousePos);
+                        Input.SetCursorPos(camera.WorldToScreen(player.Pos));
+                        _aiming = false;
+                    }
+
+                    yield return new WaitTime(10);
+
+
+
                 }
                 //else
                 //{
@@ -246,10 +245,19 @@ namespace MadDog_AutoAim
 
         private IEnumerator Attack()
         {
-            if (_currentTarget == null || _aiming == false) yield break;
-            var position = GameController.Game.IngameState.Camera.WorldToScreen(_currentTarget.Item2.Pos);
-            Input.SetCursorPos(position);
-            yield return Input.KeyPress(Settings.ActiveSKill.Value);
+            if (_currentTarget == null)
+            {
+                _aiming = false;
+                yield break;
+            }
+            else
+            {
+                var position = GameController.Game.IngameState.Camera.WorldToScreen(_currentTarget.Item2.Pos);
+                Input.SetCursorPos(position);
+                yield return Input.KeyPress(Settings.ActiveSKill.Value);
+            }
+                
+            
         }
 
         private IEnumerable<Tuple<float, Entity>> ScanValidMonsters()
