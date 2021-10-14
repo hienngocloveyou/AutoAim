@@ -90,6 +90,12 @@ namespace MadDog_AutoAim
                         _lastTargetSwap.Restart();
                     }
                     */
+                    if (_currentTarget == null ||
+                        !ValidTarget(_currentTarget?.Item2))
+                    {
+                        _currentTarget = ScanValidMonsters()?.FirstOrDefault();
+                        //_lastTargetSwap.Restart();
+                    }
                 }
                 catch
                 {
