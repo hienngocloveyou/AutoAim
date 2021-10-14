@@ -73,7 +73,7 @@ namespace MadDog_AutoAim
             {
                 try
                 {
-                    /*
+                    
                     if (_currentTarget == null ||
                         !ValidTarget(_currentTarget?.Item2))
                     {
@@ -86,7 +86,7 @@ namespace MadDog_AutoAim
                         if (best?.Item1 > 1.2f * _currentTarget?.Item1) _currentTarget = best;
                         _lastTargetSwap.Restart();
                     }
-                    
+                    /*
                     if (_currentTarget == null ||
                         !ValidTarget(_currentTarget?.Item2))
                     {
@@ -101,8 +101,8 @@ namespace MadDog_AutoAim
                     // ignored
                 }
 
-                /*
-                if(player.IsAlive)
+                
+                if(GameController.Player.IsAlive)
                 {
                     //if (Input.IsKeyDown(Keys.LButton))
                     //_oldMousePos = Input.MousePosition;
@@ -118,7 +118,7 @@ namespace MadDog_AutoAim
                     if (Input.IsKeyDown(Keys.LButton) && _aiming)
                     {
                         //Input.SetCursorPos(_oldMousePos);
-                        Input.SetCursorPos(camera.WorldToScreen(player.Pos));
+                        Input.SetCursorPos(GameController.Game.IngameState.Camera.WorldToScreen(GameController.Player.Pos));
                         _aiming = false;
                     }
 
@@ -131,7 +131,7 @@ namespace MadDog_AutoAim
                 {
                     _aiming = false;
                 }
-                */
+                
                 
             }
 
