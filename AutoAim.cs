@@ -170,11 +170,13 @@ namespace MadDog_AutoAim
 
         public override void Render()
         {
+            /*
             if (_currentTarget != null)
             {
                 var position = camera.WorldToScreen(_currentTarget.Item2.Pos);
                 Graphics.DrawFrame(position, position.Translate(20, 20), Color.Chocolate, 3);
             }
+            */
 
             if (Settings.Enable)
             {
