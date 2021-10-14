@@ -76,7 +76,7 @@ namespace MadDog_AutoAim
             {
                 try
                 {
-                    
+                    /*
                     if (_currentTarget == null ||
                         !ValidTarget(_currentTarget?.Item2))
                     {
@@ -89,7 +89,7 @@ namespace MadDog_AutoAim
                         if (best?.Item1 > 1.2f * _currentTarget?.Item1) _currentTarget = best;
                         _lastTargetSwap.Restart();
                     }
-                    /*
+                    
                     if (_currentTarget == null ||
                         !ValidTarget(_currentTarget?.Item2))
                     {
