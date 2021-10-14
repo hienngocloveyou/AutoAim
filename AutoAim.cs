@@ -185,26 +185,17 @@ namespace MadDog_AutoAim
             {
                 if (Settings.ShowAimRange.Value)
                 {
-                    DrawEllipseToWorld(GetLocalPlayerPos(), Settings.AimRange.Value, 25, 2, Color.LawnGreen);
+                    DrawEllipseToWorld(player.Pos, Settings.AimRange.Value, 25, 2, Color.LawnGreen);
                 }
 
-                
-                //DrawLineToMonster();
-
-
-
+                      
             }
 
 
-            base.Render();
+            //base.Render();
         }
 
-        private Vector3 GetLocalPlayerPos()
-        {
-            //Vector3 pos = GameController.Game.IngameState.Data.LocalPlayer.GetComponent<Render>().Pos;
-            Vector3 pos = player.Pos;
-            return pos;
-        }
+        
 
         private void DrawEllipseToWorld(Vector3 vector3Pos, int radius, int points, int lineWidth, Color color)
         {
