@@ -105,7 +105,7 @@ namespace MadDog_AutoAim
 
                 if(player.IsAlive)
                 {
-                    if(_currentTarget != null)
+                    if(ValidTarget(_currentTarget?.Item2))
                     {
                         //if (Input.IsKeyDown(Keys.LButton))
                         //_oldMousePos = Input.MousePosition;
