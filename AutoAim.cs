@@ -129,10 +129,10 @@ namespace MadDog_AutoAim
                     }
                     
                 }
-                else
-                {
-                    _aiming = false;
-                }
+                //else
+                //{
+                    //_aiming = false;
+                //}
                 
             }
             // ReSharper disable once IteratorNeverReturns
