@@ -97,27 +97,31 @@ namespace MadDog_AutoAim
                     // ignored
                 }
 
-                if(player.IsAlive && _currentTarget != null)
+                if(player.IsAlive)
                 {
-                    //if (Input.IsKeyDown(Keys.LButton))
+                    if(_currentTarget != null)
+                    {
+                        //if (Input.IsKeyDown(Keys.LButton))
                         //_oldMousePos = Input.MousePosition;
 
-                    if (!Input.IsKeyDown(Keys.LButton)
-                        && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
-                        && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
-                    {
-                        _aiming = true;
-                        yield return Attack();
-                    }
+                        if (!Input.IsKeyDown(Keys.LButton)
+                            && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
+                            && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
+                        {
+                            _aiming = true;
+                            yield return Attack();
+                        }
 
-                    if (Input.IsKeyDown(Keys.LButton) && _aiming)
-                    {
-                        //Input.SetCursorPos(_oldMousePos);
-                        Input.SetCursorPos(camera.WorldToScreen(player.Pos));
-                        _aiming = false;
-                    }
+                        if (Input.IsKeyDown(Keys.LButton) && _aiming)
+                        {
+                            //Input.SetCursorPos(_oldMousePos);
+                            Input.SetCursorPos(camera.WorldToScreen(player.Pos));
+                            _aiming = false;
+                        }
 
-                    yield return new WaitTime(10);
+                        yield return new WaitTime(10);
+                    }
+                    
                 }
                 else
                 {
