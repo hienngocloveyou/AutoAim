@@ -99,8 +99,8 @@ namespace MadDog_AutoAim
 
                 if(player.IsAlive)
                 {
-                    if(_currentTarget != null)
-                    {
+                    //if(_currentTarget != null)
+                    //{
                         //if (Input.IsKeyDown(Keys.LButton))
                         //_oldMousePos = Input.MousePosition;
 
@@ -120,7 +120,7 @@ namespace MadDog_AutoAim
                         }
 
                         yield return new WaitTime(10);
-                    }
+                    //}
                     
                 }
                 else
