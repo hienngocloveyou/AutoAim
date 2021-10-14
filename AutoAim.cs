@@ -23,6 +23,7 @@ namespace MadDog_AutoAim
         private Coroutine _mainCoroutine;
         private Tuple<float, Entity> _currentTarget;
         private Stopwatch _lastTargetSwap = new Stopwatch();
+
         //private Entity player;
         //private Camera camera;
 
@@ -61,7 +62,7 @@ namespace MadDog_AutoAim
             //player = GameController.Player;
             //camera = GameController.Game.IngameState.Camera;
             LoadIgnoredMonsters($@"{DirectoryFullName}\Ignored Monsters.txt");
-            Input.RegisterKey(Keys.LButton);
+            //Input.RegisterKey(Keys.LButton);
             _mainCoroutine = new Coroutine(MainCoroutine(),this,"EDC");
             Core.ParallelRunner.Run(_mainCoroutine);
             return true;
@@ -107,22 +108,47 @@ namespace MadDog_AutoAim
                     //if (Input.IsKeyDown(Keys.LButton))
                     //_oldMousePos = Input.MousePosition;
 
-                    if (!Input.IsKeyDown(Keys.LButton)
+                    if(Settings.AFKMod.Value)
+                    {
+                        Input.RegisterKey(Keys.LButton);
+                        if (!Input.IsKeyDown(Keys.LButton)
                         && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
                         && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
-                    {
-                        _aiming = true;
-                        yield return Attack();
-                    }
+                        {
+                            _aiming = true;
+                            yield return Attack();
+                        }
 
-                    if (Input.IsKeyDown(Keys.LButton) && _aiming)
-                    {
-                        //Input.SetCursorPos(_oldMousePos);
-                        Input.SetCursorPos(GameController.Game.IngameState.Camera.WorldToScreen(GameController.Player.Pos));
-                        _aiming = false;
-                    }
+                        if (Input.IsKeyDown(Keys.LButton) && _aiming)
+                        {
+                            //Input.SetCursorPos(_oldMousePos);
+                            Input.SetCursorPos(GameController.Game.IngameState.Camera.WorldToScreen(GameController.Player.Pos));
+                            _aiming = false;
+                        }
 
-                    yield return new WaitTime(10);
+                        yield return new WaitTime(10);
+                    }
+                    else
+                    {
+                        Input.RegisterKey(Keys.RButton);
+                        if (Input.IsKeyDown(Keys.RButton)
+                        && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
+                        && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
+                        {
+                            _aiming = true;
+                            yield return Attack();
+                        }
+
+                        if (!Input.IsKeyDown(Keys.RButton) && _aiming)
+                        {
+                            //Input.SetCursorPos(_oldMousePos);
+                            Input.SetCursorPos(GameController.Game.IngameState.Camera.WorldToScreen(GameController.Player.Pos));
+                            _aiming = false;
+                        }
+
+                        yield return new WaitTime(10);
+                    }
+                    
 
 
 

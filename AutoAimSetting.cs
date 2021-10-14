@@ -12,6 +12,7 @@ namespace MadDog_AutoAim
         public RangeNode<int> AimLoopDelay { get; set; } = new RangeNode<int>(124, 1, 200);
         public ToggleNode DebugMonsterWeight { get; set; } = new ToggleNode(false);
         public ToggleNode ShowAimRange { get; set; } = new ToggleNode(false);
+        public ToggleNode AFKMod { get; set; } = new ToggleNode(false);
         public RangeNode<int> HasContagionWeight { get; set; } = new RangeNode<int>(20, -200, 200);
         public RangeNode<int> UniqueRarityWeight { get; set; } = new RangeNode<int>(20, -200, 200);
         public RangeNode<int> RareRarityWeight { get; set; } = new RangeNode<int>(15, -200, 200);
