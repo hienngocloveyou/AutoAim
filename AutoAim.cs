@@ -146,7 +146,7 @@ namespace MadDog_AutoAim
                        entity.GetComponent<Targetable>().isTargetable &&
                        entity.HasComponent<Life>() &&
                        entity.GetComponent<Life>().CurHP > 0 &&
-                       entity.DistancePlayer < Settings.AimRange &&
+                       GetDistanceFromPlayer(entity) < Settings.AimRange &&
                        GameController.Window.GetWindowRectangleTimeCache.Contains(
                            camera.WorldToScreen(entity.Pos));
             }
@@ -154,6 +154,13 @@ namespace MadDog_AutoAim
             {
                 return false;
             }
+        }
+
+        private int GetDistanceFromPlayer(Entity entity)
+        {
+            var p = entity.Pos;
+            var distance = Math.Sqrt(Math.Pow(player.Pos.X - p.X, 2) + Math.Pow(player.Pos.Y - p.Y, 2));
+            return (int)distance;
         }
 
         public override void Render()
