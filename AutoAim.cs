@@ -60,7 +60,7 @@ namespace MadDog_AutoAim
         {
             player = GameController.Player;
             camera = GameController.Game.IngameState.Camera;
-            //LoadIgnoredMonsters($@"{DirectoryFullName}\Ignored Monsters.txt");
+            LoadIgnoredMonsters($@"{DirectoryFullName}\Ignored Monsters.txt");
             Input.RegisterKey(Keys.LButton);
             _mainCoroutine = new Coroutine(
                 MainCoroutine(),
