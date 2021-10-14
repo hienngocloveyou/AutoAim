@@ -100,7 +100,7 @@ namespace MadDog_AutoAim
                     yield return Attack();
                 }
 
-                if (!Input.IsKeyDown(Keys.LButton) && _aiming)
+                if (Input.IsKeyDown(Keys.LButton) && _aiming)
                 {
                     Input.SetCursorPos(_oldMousePos);
                     _aiming = false;
