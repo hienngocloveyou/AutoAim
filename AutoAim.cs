@@ -104,6 +104,7 @@ namespace MadDog_AutoAim
                     // ignored
                 }
 
+                /*
                 if(player.IsAlive)
                 {
                     //if (Input.IsKeyDown(Keys.LButton))
@@ -133,8 +134,10 @@ namespace MadDog_AutoAim
                 {
                     _aiming = false;
                 }
+                */
                 
             }
+
             // ReSharper disable once IteratorNeverReturns
         }
 
