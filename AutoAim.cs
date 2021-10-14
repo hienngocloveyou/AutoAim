@@ -63,6 +63,14 @@ namespace MadDog_AutoAim
             //camera = GameController.Game.IngameState.Camera;
             LoadIgnoredMonsters($@"{DirectoryFullName}\Ignored Monsters.txt");
             //Input.RegisterKey(Keys.LButton);
+            if (Settings.AFKMod.Value)
+            {
+                Input.RegisterKey(Keys.LButton);
+            }
+            else
+            {
+                Input.RegisterKey(Keys.RButton);
+            }
             _mainCoroutine = new Coroutine(MainCoroutine(),this,"EDC");
             Core.ParallelRunner.Run(_mainCoroutine);
             return true;
@@ -110,7 +118,7 @@ namespace MadDog_AutoAim
 
                     if(Settings.AFKMod.Value)
                     {
-                        Input.RegisterKey(Keys.LButton);
+                        
                         if (!Input.IsKeyDown(Keys.LButton)
                         && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
                         && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
@@ -130,7 +138,7 @@ namespace MadDog_AutoAim
                     }
                     else
                     {
-                        Input.RegisterKey(Keys.RButton);
+                        
                         if (Input.IsKeyDown(Keys.RButton)
                         && !GameController.Game.IngameState.IngameUi.InventoryPanel.IsVisible
                         && !GameController.Game.IngameState.IngameUi.OpenLeftPanel.IsVisible)
