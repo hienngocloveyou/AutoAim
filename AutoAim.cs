@@ -234,7 +234,7 @@ namespace MadDog_AutoAim
 
         private IEnumerator Attack()
         {
-            if (_currentTarget == null) yield break;
+            if (_currentTarget == null || _aiming == false) yield break;
             var position = GameController.Game.IngameState.Camera.WorldToScreen(_currentTarget.Item2.Pos);
             Input.SetCursorPos(position);
             yield return Input.KeyPress(Settings.ActiveSKill.Value);
