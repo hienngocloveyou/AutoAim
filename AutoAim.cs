@@ -76,7 +76,7 @@ namespace MadDog_AutoAim
             {
                 try
                 {
-                    /*
+                    
                     if (_currentTarget == null ||
                         !ValidTarget(_currentTarget?.Item2))
                     {
@@ -89,20 +89,15 @@ namespace MadDog_AutoAim
                         if (best?.Item1 > 1.2f * _currentTarget?.Item1) _currentTarget = best;
                         _lastTargetSwap.Restart();
                     }
-                    */
-                    if (_currentTarget == null ||
-                        !ValidTarget(_currentTarget?.Item2))
-                    {
-                        _currentTarget = ScanValidMonsters()?.FirstOrDefault();
-                        //_lastTargetSwap.Restart();
-                    }
+                    
+                    
                 }
                 catch
                 {
                     // ignored
                 }
 
-                if(player.IsAlive)
+                if(player.IsAlive && _currentTarget != null)
                 {
                     //if (Input.IsKeyDown(Keys.LButton))
                         //_oldMousePos = Input.MousePosition;
