@@ -247,7 +247,7 @@ namespace MadDog_AutoAim
         {
             if (_currentTarget == null)
             {
-                _aiming = false;
+                //_aiming = false;
                 yield break;
             }
             else
