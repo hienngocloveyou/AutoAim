@@ -8,7 +8,7 @@ namespace MadDog_AutoAim
     {
         //public HotkeyNode AimKey { get; set; } = Keys.RButton;
         public HotkeyNode ActiveSKill { get; set; } = Keys.Q;
-        public RangeNode<int> AimRange { get; set; } = new RangeNode<int>(100, 40, 1000);
+        public RangeNode<int> AimRange { get; set; } = new RangeNode<int>(100, 40, 1500);
         public RangeNode<int> AimLoopDelay { get; set; } = new RangeNode<int>(124, 1, 200);
         public ToggleNode DebugMonsterWeight { get; set; } = new ToggleNode(false);
         public ToggleNode ShowAimRange { get; set; } = new ToggleNode(false);
